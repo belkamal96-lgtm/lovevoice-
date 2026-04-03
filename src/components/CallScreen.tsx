@@ -6,7 +6,7 @@ import { GoogleGenAI, Modality } from "@google/genai";
 
 interface CallScreenProps {
   persona: Persona;
-  onEndCall: () => void;
+  onEndCall: (duration: number) => void;
 }
 
 export const CallScreen: React.FC<CallScreenProps> = ({ persona, onEndCall }) => {
@@ -80,11 +80,11 @@ export const CallScreen: React.FC<CallScreenProps> = ({ persona, onEndCall }) =>
             },
             onclose: () => {
               console.log("Live session closed");
-              onEndCall();
+              onEndCall(duration);
             },
             onerror: (err) => {
               console.error("Live session error:", err);
-              onEndCall();
+              onEndCall(duration);
             }
           }
         });
@@ -247,7 +247,7 @@ export const CallScreen: React.FC<CallScreenProps> = ({ persona, onEndCall }) =>
       </div>
 
       <button 
-        onClick={onEndCall}
+        onClick={() => onEndCall(duration)}
         className="w-20 h-20 rounded-full bg-red-500 flex items-center justify-center shadow-lg hover:bg-red-600 transition-colors active:scale-90"
       >
         <PhoneOff size={36} fill="currentColor" />

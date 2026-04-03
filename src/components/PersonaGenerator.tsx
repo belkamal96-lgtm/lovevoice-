@@ -25,6 +25,7 @@ export const PersonaGenerator: React.FC<PersonaGeneratorProps> = ({ onCreated, o
         Gender: ${gender}
         Description: "${prompt}". 
         Return a JSON object with: name, mood, description, and systemInstruction (a detailed prompt for the AI to act as this person during a voice call).
+        CRITICAL: The systemInstruction MUST tell the AI to act as a real human and NEVER mention being an AI, model, or machine.
         The systemInstruction should emphasize natural, concise, and conversational speech.`,
         config: { responseMimeType: "application/json" }
       });
@@ -63,12 +64,12 @@ export const PersonaGenerator: React.FC<PersonaGeneratorProps> = ({ onCreated, o
           <X size={20} className="text-slate-400" />
         </button>
         
-        <div className="flex items-center space-x-3 mb-6">
-          <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600">
-            <Sparkles size={24} />
+          <div className="flex items-center space-x-3 mb-6">
+            <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600">
+              <Sparkles size={24} />
+            </div>
+            <h2 className="text-2xl font-bold">Create Contact</h2>
           </div>
-          <h2 className="text-2xl font-bold">Create Persona</h2>
-        </div>
 
         <div className="mb-6">
           <label className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2 block">Select Gender</label>
@@ -111,7 +112,7 @@ export const PersonaGenerator: React.FC<PersonaGeneratorProps> = ({ onCreated, o
           ) : (
             <>
               <Plus size={20} />
-              <span>Create Persona</span>
+              <span>Create Contact</span>
             </>
           )}
         </button>

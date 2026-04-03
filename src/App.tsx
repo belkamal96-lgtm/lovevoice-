@@ -6,28 +6,6 @@ import { CallScreen } from './components/CallScreen';
 import { PersonaGenerator } from './components/PersonaGenerator';
 import { GoogleGenAI, ThinkingLevel, Modality } from "@google/genai";
 
-const StatusBar = () => {
-  const [time, setTime] = useState(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  return (
-    <div className="flex items-center justify-between px-6 py-2 bg-white text-slate-900 text-xs font-bold z-20">
-      <span>{time}</span>
-      <div className="flex items-center space-x-1.5">
-        <Signal size={12} />
-        <Wifi size={12} />
-        <Battery size={14} className="rotate-90" />
-      </div>
-    </div>
-  );
-};
-
 export default function App() {
   const [personas, setPersonas] = useState<Persona[]>(INITIAL_PERSONAS);
   const [activePersona, setActivePersona] = useState<Persona | null>(null);
@@ -118,17 +96,15 @@ export default function App() {
   );
 
   return (
-    <div className="h-screen-dynamic bg-slate-900 flex items-center justify-center overflow-hidden">
-      {/* Mobile Frame (Visible on Desktop) */}
-      <div className="w-full h-full max-w-md bg-slate-50 relative flex flex-col overflow-hidden shadow-2xl md:rounded-[3rem] md:border-[8px] md:border-slate-800">
+    <div className="h-screen-dynamic bg-slate-50 flex items-center justify-center overflow-hidden">
+      {/* App Container */}
+      <div className="w-full h-full max-w-md bg-white relative flex flex-col overflow-hidden shadow-2xl">
         
-        <StatusBar />
-
         <AnimatePresence>
           {activePersona && (
             <CallScreen 
               persona={activePersona} 
-              onEndCall={() => handleEndCall(0)} 
+              onEndCall={(duration) => handleEndCall(duration)} 
             />
           )}
           {showGenerator && (
@@ -146,10 +122,8 @@ export default function App() {
         <header className="bg-white border-b border-slate-200 px-6 py-4">
           <div className="flex flex-col space-y-4">
             <div className="flex items-center justify-between">
-              <h1 className="text-2xl font-bold tracking-tight">
-                {activeTab === 'contacts' ? 'Contacts' : 
-                 activeTab === 'recents' ? 'Recents' : 
-                 activeTab === 'favorites' ? 'Favorites' : 'Keypad'}
+              <h1 className="text-2xl font-bold tracking-tight text-blue-600">
+                LoveCall
               </h1>
               <div className="flex items-center space-x-2">
                 <button 
@@ -203,7 +177,7 @@ export default function App() {
               {/* Persona List */}
               <div className="space-y-4">
                 <div className="flex items-center justify-between px-2">
-                  <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">AI Personas</h2>
+                  <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">Available Now</h2>
                   <span className="text-xs text-slate-400">Double tap to call</span>
                 </div>
                 <div className="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
@@ -309,7 +283,7 @@ export default function App() {
               <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Search size={32} className="text-slate-300" />
               </div>
-              <p className="text-slate-500">No personas found matching your search.</p>
+              <p className="text-slate-500">No contacts found matching your search.</p>
             </div>
           )}
         </main>
