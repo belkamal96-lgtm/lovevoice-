@@ -1,11 +1,26 @@
 @import "tailwindcss";
 
+@layer base {
+  html, body, #root {
+    height: 100%;
+    overflow: hidden;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
 @layer utilities {
+  .h-screen-dynamic {
+    height: 100dvh;
+  }
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+  .mask-fade-edges {
+    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
   }
 }

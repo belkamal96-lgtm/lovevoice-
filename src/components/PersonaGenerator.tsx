@@ -56,7 +56,7 @@ export const PersonaGenerator: React.FC<PersonaGeneratorProps> = ({ onCreated, o
     <motion.div 
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-slate-900/80 backdrop-blur-sm"
+      className="absolute inset-0 z-50 flex items-center justify-center p-6 bg-slate-900/80 backdrop-blur-sm"
     >
       <div className="bg-white rounded-3xl w-full max-w-md p-8 shadow-2xl relative">
         <button onClick={onClose} className="absolute top-4 right-4 p-2 hover:bg-slate-100 rounded-full">

@@ -169,7 +169,7 @@ export const CallScreen: React.FC<CallScreenProps> = ({ persona, onEndCall }) =>
       initial={{ opacity: 0, y: 100 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 100 }}
-      className="fixed inset-0 bg-slate-900 text-white z-50 flex flex-col items-center justify-between py-20 px-6"
+      className="absolute inset-0 bg-slate-900 text-white z-50 flex flex-col items-center justify-between py-20 px-6"
     >
       <div className="flex flex-col items-center space-y-4">
         <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-slate-700 shadow-2xl">
