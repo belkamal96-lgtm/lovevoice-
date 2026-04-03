@@ -1,0 +1,5 @@
+{
+  "name": "PersonaCall AI",
+  "description": "A realistic AI phone call experience where you can talk to various AI personas with different moods and personalities in real-time.",
+  "requestFramePermissions": ["microphone"]
+}
